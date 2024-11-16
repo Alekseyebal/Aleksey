@@ -1,0 +1,19 @@
+{% extends 'base/shablon.html' %}
+
+{% block title %}База данных{% endblock %}
+
+{% block content %}
+    
+  <h2>Данные</h2>
+  <table id="table">   {# Таблица куда мы выводим данные #}
+    <tr><th>id</th><th>Клуб</th><th>Событие</th><th>Имя</th><th>Фамилия</th><th>Номер телефона</th><th>Возраст</th> </tr> {# Титульная строка #}
+  
+       <form method="post"> {# Форма которая принимает значения после обновления страицы (нужна для кнопки удалить) #}
+        {% csrf_token %} {# Обязательный элемент для работы формы #}
+        {% for i in news%}  {# Начало цикла, где мы проходим по всем сохраненным нами данным в "массив" news #}
+       <tr><td>{{i.id}}</td><td>{{i.NameClub}}</td><td>{{i.NameNews}}</td><td>{{i.FirstName}}</td> <td>{{i.SurName}}</td><td>{{i.Number}}</td><td>{{i.Age}}</td></tr>  {# i это своего рода один словарь из массива news, мы достаем из этого словаря значения по ключам#}        
+         {% endfor %}
+       </form>
+    </table>
+
+{% endblock %}
